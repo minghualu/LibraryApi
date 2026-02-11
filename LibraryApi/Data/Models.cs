@@ -25,6 +25,6 @@ namespace LibraryApi.Data
         public int UserId { get; set; }
         public UserData User { get; set; } = null!;
         public DateTime BorrowDate { get; set; }
-        public DateTime? ReturnDate { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

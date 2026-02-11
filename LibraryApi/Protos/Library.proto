@@ -8,6 +8,9 @@ service LibraryService {
   rpc GetMostBorrowedBooksAsync (Empty) returns (BooksResponse);
   rpc GetBookAvailabilityAsync (BookRequest) returns (BookAvailabilityResponse);
   rpc GetTopBorrowerOfBookAsync (TimeFrameRequest) returns (UsersResponse);
+  rpc GetUserBorrowedBooksAsync (UserTimeFrameRequest) returns (BooksResponse);
+  rpc GetOtherBorrowedBooksAsync (BookRequest) returns (BooksResponse);
+  rpc GetBookReadRateAsync (BookRequest) returns (ReadRateResponse);
 }
 
 message Empty {}
@@ -46,4 +49,13 @@ message BooksResponse {
 
 message UsersResponse {
   repeated UserProto users = 1;
+}
+
+message BookAvailabilityResponse {
+  int32 borrowed = 1;
+  int32 available = 2;
+}
+
+message ReadRateResponse {
+  double pagesPerDay = 1;
 }
