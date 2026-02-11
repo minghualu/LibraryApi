@@ -1,0 +1,49 @@
+syntax="proto3";
+
+option csharp_namespace = "LibraryApi.Grpc";
+
+import "google/protobuf/Timestamp.proto";
+
+service LibraryService {
+  rpc GetMostBorrowedBooksAsync (Empty) returns (BooksResponse);
+  rpc GetBookAvailabilityAsync (BookRequest) returns (BookAvailabilityResponse);
+  rpc GetTopBorrowerOfBookAsync (TimeFrameRequest) returns (UsersResponse);
+}
+
+message Empty {}
+
+message BookRequest {
+  int32 bookId = 1;
+}
+
+message UserTimeFrameRequest {
+  int32 userId = 1;
+  google.protobuf.Timestamp startDate = 2;
+  google.protobuf.Timestamp endDate = 3;
+}
+
+message TimeFrameRequest {
+  google.protobuf.Timestamp startDate = 1;
+  google.protobuf.Timestamp endDate = 2;
+}
+
+message BookProto {
+  int32 id = 1;
+  string title = 2;
+  int32 pages = 3;
+  int32 borrowCount = 4;
+}
+
+message UserProto {
+  int32 id = 1;
+  string name = 2;
+  int32 borrowCount = 3;
+}
+
+message BooksResponse {
+  repeated BookProto books = 1;
+}
+
+message UsersResponse {
+  repeated UserProto users = 1;
+}
